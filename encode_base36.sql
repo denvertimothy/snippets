@@ -1,4 +1,4 @@
-CREATE OR REPLACE FUNCTION sheeting.encode_base36(digits bigint, min_width int = 0)
+CREATE OR REPLACE FUNCTION encode_base36(digits bigint, min_width int = 0)
 LANGUAGE 'plpgsql' IMMUTABLE RETURNS varchar AS $$
 DECLARE
 	chars char[];
