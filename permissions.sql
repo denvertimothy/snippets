@@ -1,12 +1,5 @@
 begin;
 
-alter table franchises drop column account_executive_id;
-alter table users drop column permissions_superuser;
-drop table system_users_roles;
-drop table system_roles_permissions;
-drop table system_permissions;
-drop table system_roles;
-
 create table system_users (
 	id uuid primary key default gen_random_uuid(),
 	name text not null check (trim(name) <> '')
