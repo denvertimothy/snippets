@@ -2,7 +2,8 @@ begin;
 
 create table system_users (
 	id uuid primary key default gen_random_uuid(),
-	name text not null check (trim(name) <> '')
+	name text not null check (trim(name) <> ''),
+	permissions_superuser boolean not null default false
 );
 
 create table system_roles (
@@ -39,19 +40,25 @@ create table system_users_roles (
 	unique (user_id, role_id)
 );
 
-alter table users add column permissions_superuser boolean not null default false;
-update users set permissions_superuser=true where id in (1, 2);
-	
-alter table franchises add column account_executive_id integer not null default 1 references users(id);
 
-
-CREATE OR REPLACE FUNCTION system_permissions_grants_compose(sel BOOLEAN DEFAULT FALSE, up BOOLEAN DEFAULT FALSE, ins BOOLEAN DEFAULT FALSE, del BOOLEAN DEFAULT FALSE, mgr BOOLEAN DEFAULT FALSE, adm BOOLEAN DEFAULT FALSE)
+CREATE OR REPLACE FUNCTION system_permissions_grants_compose (
+	sel BOOLEAN DEFAULT FALSE,
+	up BOOLEAN DEFAULT FALSE,
+	ins BOOLEAN DEFAULT FALSE,
+	del BOOLEAN DEFAULT FALSE,
+	mgr BOOLEAN DEFAULT FALSE,
+	adm BOOLEAN DEFAULT FALSE
+)
 RETURNS BIT(6) LANGUAGE sql AS $$
 	SELECT ((sel::INTEGER * 1) + (up::INTEGER * 2) + (ins::INTEGER * 4) + (del::INTEGER * 8) + (mgr::INTEGER * 16) + (adm::INTEGER * 32))::BIT(6);
 $$;
 
 
-CREATE OR REPLACE FUNCTION system_permissions_check(user_id INTEGER, permissions_id TEXT, grants BIT(6))
+CREATE OR REPLACE FUNCTION system_permissions_check(
+	user_id INTEGER,
+	permissions_id TEXT,
+	grants BIT(6)
+)
 RETURNS BOOLEAN LANGUAGE sql AS $$
 	WITH is_superuser AS (
 		SELECT permissions_superuser::INTEGER AS count FROM system_users WHERE id=$1
@@ -70,7 +77,10 @@ RETURNS BOOLEAN LANGUAGE sql AS $$
 $$;
 
 
-CREATE OR REPLACE FUNCTION system_permissions_users(permissions_id TEXT, grants BIT(6))
+CREATE OR REPLACE FUNCTION system_permissions_users(
+	permissions_id TEXT,
+	grants BIT(6)
+)
 RETURNS users LANGUAGE sql AS $$
 	SELECT u.*
 	FROM system_users AS u
@@ -82,4 +92,4 @@ RETURNS users LANGUAGE sql AS $$
 $$;
 
 
-commit;	
+commit;
