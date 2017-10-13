@@ -37,7 +37,7 @@ BEGIN
 END;
 $$;
 
-CREATE OR REPLACE FUNCTION public.audit_table_log()
+CREATE OR REPLACE FUNCTION audit_table_log()
 RETURNS trigger LANGUAGE plpgsql SECURITY DEFINER AS $$
 DECLARE
 	dest_schema TEXT := COALESCE(TG_ARGV[0], TG_TABLE_SCHEMA||'_audit');
