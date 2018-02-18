@@ -1,11 +1,16 @@
+/*
+	Used as a pseudo-random number generator of unique values. Useful for communicating
+	numbers generated sequentially without revealing their ordinal position in the sequence.
+*/
+
 CREATE OR REPLACE FUNCTION encrypt_feistel_24(digits BIGINT)
 	RETURNS INTEGER
 	LANGUAGE plpgsql STRICT IMMUTABLE
 	AS $$
 DECLARE
 	l1 INTEGER := (digits >> 16) & 65535;
-	l2 INTEGER := digits & 65535;
-	r1 INTEGER;
+	l2 INTEGER;
+	r1 INTEGER := digits & 65535;
 	r2 INTEGER;
 	i INTEGER := 0;
 BEGIN
