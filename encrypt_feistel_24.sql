@@ -1,7 +1,7 @@
 /*
 	encrypt_feistel_24(digits)
 	
-	Takes an integer as parameter and returns pseudo-randomized integer.
+	Takes an integer as parameter and returns non-colliding pseudo-randomized integer.
 	
 	Used as a pseudo-random generator of unique values. It produces an integer
 	output that is uniquely associated to its integer input (by a mathematical
