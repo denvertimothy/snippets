@@ -12,6 +12,7 @@
 	
 	https://wiki.postgresql.org/wiki/Pseudo_encrypt
 	https://www.postgresql.org/message-id/448163db-cac5-4e99-8c4c-57cbc6f6af78@mm
+	https://stackoverflow.com/questions/12761346/pseudo-encrypt-function-in-plpgsql-that-takes-bigint/12761795#12761795
 	https://medium.com/@emerson_lackey/postgres-randomized-primary-keys-123cb8fcdeaf
 */
 
@@ -53,5 +54,4 @@ BEGIN
     i := i + 1;
     END LOOP;
 RETURN ((r1::bigint << 32) + l1);
-END;
-$$ LANGUAGE plpgsql strict immutable;
+END;$$;
