@@ -44,12 +44,12 @@ DECLARE
 	r2 bigint;
 	i integer := 0;
 BEGIN
-    WHILE i < 3 LOOP
-        l2 := r1;
-        r2 := l1 # ((((1366.0 * r1 + 150889) % 714025) / 714025.0) * 32767*32767)::integer;
-        l1 := l2;
-        r1 := r2;
-    i := i + 1;
-    END LOOP;
-RETURN ((r1::bigint << 32) + l1);
+	WHILE i < 3 LOOP
+		l2 := r1;
+		r2 := l1 # ((((1366.0 * r1 + 150889) % 714025) / 714025.0) * 32767*32767)::integer;
+		l1 := l2;
+		r1 := r2;
+		i := i + 1;
+	END LOOP;
+	RETURN ((r1::bigint << 32) + l1);
 END;$$;
