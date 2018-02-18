@@ -38,14 +38,12 @@ END;$$;
 CREATE OR REPLACE FUNCTION encrypt_feistel(digits bigint)
 	RETURNS bigint LANGUAGE plpgsql STRICT IMMUTABLE AS $$
 DECLARE
-	l1 bigint;
+	l1 bigint := (digits >> 32) & 4294967295::bigint;
 	l2 bigint;
-	r1 bigint;
+	r1 bigint := digits & 4294967295;
 	r2 bigint;
 	i integer := 0;
 BEGIN
-    l1:= (digits >> 32) & 4294967295::bigint;
-    r1:= digits & 4294967295;
     WHILE i < 3 LOOP
         l2 := r1;
         r2 := l1 # ((((1366.0 * r1 + 150889) % 714025) / 714025.0) * 32767*32767)::integer;
