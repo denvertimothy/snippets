@@ -1,6 +1,8 @@
 /*
 	encrypt_feistel_24(digits)
 	
+	Takes an integer as parameter and returns pseudo-randomized integer.
+	
 	Used as a pseudo-random generator of unique values. It produces an integer
 	output that is uniquely associated to its integer input (by a mathematical
 	permutation), but looks random at the same time, with zero collision. This
@@ -11,8 +13,6 @@
 	https://wiki.postgresql.org/wiki/Pseudo_encrypt
 	https://www.postgresql.org/message-id/448163db-cac5-4e99-8c4c-57cbc6f6af78@mm
 	https://medium.com/@emerson_lackey/postgres-randomized-primary-keys-123cb8fcdeaf
-	
-	Takes an integer as parameter and returns pseudo-randomized integer.
 */
 
 CREATE OR REPLACE FUNCTION encrypt_feistel_24(digits BIGINT)
