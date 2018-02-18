@@ -9,6 +9,8 @@
 	promo codes...).
 	
 	https://wiki.postgresql.org/wiki/Pseudo_encrypt
+	https://www.postgresql.org/message-id/448163db-cac5-4e99-8c4c-57cbc6f6af78@mm
+	https://medium.com/@emerson_lackey/postgres-randomized-primary-keys-123cb8fcdeaf
 	
 	Takes an integer as parameter and returns pseudo-randomized integer.
 */
