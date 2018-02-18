@@ -16,7 +16,7 @@
 	https://medium.com/@emerson_lackey/postgres-randomized-primary-keys-123cb8fcdeaf
 */
 
-CREATE OR REPLACE FUNCTION encrypt_feistel(digits INTEGER)
+CREATE OR REPLACE FUNCTION encrypt_feistel(digits integer)
 	RETURNS integer LANGUAGE plpgsql STRICT IMMUTABLE AS $$
 DECLARE
 	l1 integer := (digits >> 16) & 65535;
