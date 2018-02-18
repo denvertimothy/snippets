@@ -15,7 +15,7 @@
 	https://medium.com/@emerson_lackey/postgres-randomized-primary-keys-123cb8fcdeaf
 */
 
-CREATE OR REPLACE FUNCTION encrypt_feistel_24(digits BIGINT)
+CREATE OR REPLACE FUNCTION encrypt_feistel_24(digits INTEGER)
 	RETURNS INTEGER
 	LANGUAGE plpgsql STRICT IMMUTABLE
 	AS $$
