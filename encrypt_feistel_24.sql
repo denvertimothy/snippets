@@ -35,7 +35,7 @@ BEGIN
 	RETURN ((r1 << 16) + l1);
 END;$$;
 
-CREATE OR REPLACE FUNCTION encrypt_feistel(VALUE bigint)
+CREATE OR REPLACE FUNCTION encrypt_feistel(digits bigint)
 	RETURNS bigint LANGUAGE plpgsql STRICT IMMUTABLE AS $$
 DECLARE
 	l1 bigint;
