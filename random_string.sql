@@ -1,4 +1,4 @@
-CREATE OR REPLACE FUNCTION public.random_string(len integer DEFAULT 16, chars text DEFAULT 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789&#%@!_-^*()@+=?/<>%[]{}'::text)
+CREATE OR REPLACE FUNCTION random_string(len integer DEFAULT 16, chars text DEFAULT 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789&#%@!_-^*()@+=?/<>%[]{}'::text)
  RETURNS text
  LANGUAGE plpgsql
  STRICT
