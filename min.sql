@@ -1,0 +1,4 @@
+CREATE OR REPLACE FUNCTION min(VARIADIC anyarray)
+RETURNS anyelement LANGUAGE sql IMMUTABLE AS $$
+	SELECT min(x) FROM unnest($1) AS x;
+$$;
