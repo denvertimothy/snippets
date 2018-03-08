@@ -27,7 +27,7 @@ BEGIN
 		)', dest_schema, dest_table);
 		
 		-- create trigger on source table
-		IF NOT EXISTS (SELECT * FROM pg_trigger WHERE NOT tgisinternal AND tgrelid=(source_schema||'.'||source_table)::regclass) THEN
+		IF NOT EXISTS (SELECT * FROM pg_trigger WHERE tgisinternal IS FALSE AND tgrelid=(source_schema||'.'||source_table)::regclass AND tgname='audit') THEN
 			EXECUTE FORMAT('CREATE TRIGGER audit AFTER INSERT OR DELETE OR UPDATE ON %I.%I FOR EACH ROW EXECUTE PROCEDURE audit_table_log(%s, %s)',
 				source_schema, source_table, dest_schema, dest_table);
 		END IF;
