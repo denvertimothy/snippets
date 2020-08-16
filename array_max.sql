@@ -1,4 +1,0 @@
-CREATE OR REPLACE FUNCTION max(VARIADIC anyarray)
-RETURNS anyelement LANGUAGE sql IMMUTABLE AS $$
-	SELECT max(x) FROM unnest($1) AS x;
-$$;

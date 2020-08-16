@@ -1,4 +1,0 @@
-CREATE OR REPLACE FUNCTION avg(VARIADIC anyarray)
-RETURNS numeric LANGUAGE sql IMMUTABLE AS $$
-	SELECT avg(x) FROM unnest($1) AS x;
-$$;
