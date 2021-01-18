@@ -27,6 +27,7 @@ customElements.define('thrive-popover',
 						z-index: 1000;
 						width: max-content;
 						text-align: left;
+						font-weight: normal;
 					}
 					:host([open]) {
 						display: block;
